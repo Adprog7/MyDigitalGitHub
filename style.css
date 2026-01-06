@@ -1,58 +1,141 @@
-/* 1. Reset et variables */
+/* Reset */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-:root {
-    --primary-red: #E30613;
-    --bg-white: #F0F0F0;
-    --text-black: #000;
+:root{
+  --red:#E30613;
+  --bg:#F0F0F0;
+  --black:#111;
+  --muted:#6b6b6b;
 }
 
-body {
-    font-family: 'Arial Black', sans-serif; 
-    background-color: var(--bg-white);
-    overflow-x: hidden;
+body{
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--black);
+  overflow-x: hidden;
 }
 
-.hero {
+/* ===== NAVBAR ===== */
+.navbar{
+  height: 72px;
+  padding: 0 56px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background: transparent;
+}
+
+.logo{
+  font-weight: 800;
+  letter-spacing: .2px;
+}
+
+.navbar nav{
+  display:flex;
+  gap: 22px;
+}
+
+.navbar nav a{
+  text-decoration:none;
+  color: var(--black);
+  font-size: 14px;
+  opacity: .85;
+}
+
+.navbar nav a:hover{
+  opacity: 1;
+}
+
+.social-icons{
+  width: 120px; /* réservé pour icônes */
+}
+
+/* ===== HERO ===== */
+.hero{
   position: relative;
-  height: calc(100vh - 80px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  overflow: hidden;
+  height: calc(100vh - 72px);
+  padding: 0 56px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden; /* coupe le texte géant */
 }
 
-.bg-name {
-  position: absolute;
-  font-size: 15vw;
+/* Citation à gauche */
+.quote{
+  position:absolute;
+  left: 56px;
+  top: 22%;
+  width: 360px;
+  z-index: 5;
+}
+
+.quote p{
+  font-size: 14px;
+  line-height: 1.3;
+  font-weight: 700;
+  letter-spacing: .2px;
+  text-transform: uppercase;
+}
+
+.quote span{
+  display:block;
+  margin-top: 10px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* Texte rouge géant derrière */
+.bg-name{
+  position:absolute;
+  left: 50%;
+  top: 62%;
+  transform: translate(-50%, -50%);
+  font-size: 18vw;             /* ajuste si besoin: 16-20vw */
   font-weight: 900;
+  letter-spacing: -0.08em;
+  white-space: nowrap;
+  line-height: 1;
   color: var(--red);
   z-index: 1;
-  line-height: 1;
-
-  white-space: nowrap;
-  left: 50%;
-  transform: translateX(-50%);
-  letter-spacing: -0.08em;
 }
 
-
-.player-img {
-    position: relative;
-    height: 90vh;
-    z-index: 2; /* Passe devant le nom rouge */
+/* Joueur devant */
+.player-img{
+  position: relative;
+  z-index: 4;
+  height: 88%;
+  max-height: 780px;
+  object-fit: contain;
+  transform: translateX(10px); /* léger décalage comme le design */
+  filter: drop-shadow(0 18px 22px rgba(0,0,0,.18));
 }
 
-.quote {
-    position: absolute;
-    top: 20%;
-    left: 5%;
-    width: 300px;
-    z-index: 3;
-    font-size: 0.9rem;
+/* Numéro 15 à droite (effet pointillé) */
+.number{
+  position:absolute;
+  right: 70px;
+  top: 22%;
+  z-index: 2;
+  font-size: 160px;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+
+  /* Effet "hachuré/pointillé" proche du design */
+  color: transparent;
+  -webkit-text-stroke: 2px rgba(0,0,0,.35);
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(0,0,0,.18) 0px,
+    rgba(0,0,0,.18) 2px,
+    transparent 2px,
+    transparent 7px
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  opacity: .9;
 }
