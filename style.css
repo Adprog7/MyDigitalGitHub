@@ -1,0 +1,50 @@
+/* 1. Reset et variables */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-red: #E30613;
+    --bg-white: #F0F0F0;
+    --text-black: #000;
+}
+
+body {
+    font-family: 'Arial Black', sans-serif; /* À remplacer par une police plus stylée */
+    background-color: var(--bg-white);
+    overflow-x: hidden;
+}
+
+/* 2. Mise en page du Hero */
+.hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bg-name {
+    position: absolute;
+    font-size: 20vw; /* Taille ultra large */
+    color: var(--primary-red);
+    z-index: 1;
+    letter-spacing: -5px;
+}
+
+.player-img {
+    position: relative;
+    height: 90vh;
+    z-index: 2; /* Passe devant le nom rouge */
+}
+
+.quote {
+    position: absolute;
+    top: 20%;
+    left: 5%;
+    width: 300px;
+    z-index: 3;
+    font-size: 0.9rem;
+}
