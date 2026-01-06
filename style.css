@@ -17,22 +17,30 @@ body {
     overflow-x: hidden;
 }
 
-/* 2. Mise en page du Hero */
 .hero {
-    position: relative;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  position: relative;
+  height: calc(100vh - 80px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
 }
 
 .bg-name {
-    position: absolute;
-    font-size: 20vw; /* Taille ultra large */
-    color: var(--primary-red);
-    z-index: 1;
-    letter-spacing: -5px;
+  position: absolute;
+  font-size: 15vw;
+  font-weight: 900;
+  color: var(--red);
+  z-index: 1;
+  line-height: 1;
+
+  white-space: nowrap;
+  left: 50%;
+  transform: translateX(-50%);
+  letter-spacing: -0.08em;
 }
+
 
 .player-img {
     position: relative;
