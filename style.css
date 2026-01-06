@@ -12,12 +12,98 @@
 }
 
 body {
-    font-family: 'Arial Black', sans-serif; /* À remplacer par une police plus stylée */
+    font-family: 'Arial Black', sans-serif;
     background-color: var(--bg-white);
     overflow-x: hidden;
 }
 
-/* 2. Mise en page du Hero */
+/* 2. Header / Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 60px;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    z-index: 10;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.red-dot {
+    background-color: var(--primary-red);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 8px;
+    line-height: 9px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.club-info {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    font-size: 10px;
+    text-transform: uppercase;
+    color: #999;
+}
+
+.club-name {
+    color: #000;
+    font-weight: bold;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-item {
+    text-decoration: none;
+    color: #000;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.dot {
+    width: 6px;
+    height: 6px;
+    border: 1px solid #000;
+    border-radius: 50%;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icons a {
+    color: #000;
+    font-size: 14px;
+}
+
+/* 3. Hero Section */
 .hero {
     position: relative;
     height: 100vh;
@@ -28,23 +114,23 @@ body {
 
 .bg-name {
     position: absolute;
-    font-size: 20vw; /* Taille ultra large */
+    font-size: 20vw;
     color: var(--primary-red);
     z-index: 1;
     letter-spacing: -5px;
+    user-select: none;
 }
 
 .player-img {
     position: relative;
     height: 90vh;
-    z-index: 2; /* Passe devant le nom rouge */
+    z-index: 2;
 }
 
 .quote {
     position: absolute;
-    top: 20%;
+    top: 25%;
     left: 5%;
     width: 300px;
     z-index: 3;
-    font-size: 0.9rem;
 }
