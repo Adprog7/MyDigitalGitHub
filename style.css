@@ -1,20 +1,23 @@
+/* 1. Reset et Variables */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-:root{
-  --red:#E30613;
-  --bg:#F0F0F0;
-  --black:#111;
-  --muted:#6b6b6b;
+:root {
+    --red: #E30613;
+    --bg: #F0F0F0;
+    --black: #111;
+    --muted: #6b6b6b;
 }
 
 body {
     font-family: 'Arial', sans-serif;
-    background-color: var(--bg-white);
-    overflow: hidden; /* Empêche le scroll inutile sur la landing page */
+    background-color: var(--bg);
+    color: var(--black);
+    overflow-x: hidden;
+    line-height: 1.4;
 }
 
 /* 2. Header / Navbar */
@@ -22,7 +25,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 40px 60px;
+    padding: 30px 60px;
     width: 100%;
     position: absolute;
     top: 0;
@@ -36,7 +39,7 @@ body {
 }
 
 .red-dot {
-    background-color: red;
+    background-color: var(--red);
     width: 45px;
     height: 45px;
     border-radius: 50%;
@@ -49,6 +52,7 @@ body {
     text-align: center;
     font-weight: bold;
     text-transform: uppercase;
+    flex-shrink: 0;
 }
 
 .club-info {
@@ -59,12 +63,12 @@ body {
 }
 
 .club-name {
-    color: #000;
+    color: var(--black);
     font-weight: bold;
 }
 
 .position {
-    color: #999;
+    color: var(--muted);
 }
 
 .header-right {
@@ -80,7 +84,7 @@ body {
 
 .nav-item {
     text-decoration: none;
-    color: #000;
+    color: var(--black);
     font-size: 11px;
     font-weight: 600;
     text-transform: uppercase;
@@ -92,7 +96,7 @@ body {
 .dot {
     width: 6px;
     height: 6px;
-    border: 1px solid #000;
+    border: 1px solid var(--black);
     border-radius: 50%;
 }
 
@@ -102,8 +106,9 @@ body {
 }
 
 .social-icons a {
-    color: #000;
-    font-size: 14px;
+    color: var(--black);
+    font-size: 16px;
+    text-decoration: none;
 }
 
 /* 3. Hero Section */
@@ -113,47 +118,80 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
+    padding: 0 60px;
 }
 
 .bg-name {
     position: absolute;
-    font-size: 22vw;
-    color: var(--primary-red);
+    left: 50%;
+    top: 55%;
+    transform: translate(-50%, -50%);
+    font-size: clamp(4rem, 12vw, 18rem);
+    font-weight: 900;
+    color: var(--red);
     z-index: 1;
-    letter-spacing: -10px;
-    font-family: 'Arial Black', sans-serif;
+    letter-spacing: -0.05em;
+    white-space: normal;
+    line-height: 0.9;
+    word-break: break-word;
+    text-align: center;
     user-select: none;
 }
 
 .player-img {
     position: relative;
-    height: 95vh;
-    bottom: -5vh; /* Décale un peu vers le bas pour l'effet de pose */
-    z-index: 10;
+    z-index: 4;
+    height: 90vh;
+    max-height: 850px;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 20px 30px rgba(0,0,0,0.15));
 }
 
 .quote {
     position: absolute;
-    top: 30%;
     left: 60px;
-    width: 280px;
-    z-index: 20;
-    font-size: 0.85rem;
-    line-height: 1.4;
+    top: 25%;
+    width: 320px;
+    z-index: 5;
+}
+
+.quote p {
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.quote span {
+    display: block;
+    margin-top: 10px;
+    font-size: 12px;
+    color: var(--muted);
 }
 
 .number {
     position: absolute;
     right: 60px;
-    top: 25%;
-    font-size: 12rem;
-    font-weight: bold;
+    top: 22%;
+    z-index: 2;
+    font-size: 160px;
+    font-weight: 900;
+    letter-spacing: -0.04em;
     color: transparent;
-    -webkit-text-stroke: 1px #ccc; /* Effet contour pour le numéro */
-    z-index: 1;
+    -webkit-text-stroke: 1.5px rgba(0,0,0,0.2);
+    background-image: repeating-linear-gradient(
+        45deg,
+        rgba(0,0,0,0.1) 0px,
+        rgba(0,0,0,0.1) 2px,
+        transparent 2px,
+        transparent 7px
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
 }
 
-/* 4. Widgets Section (Bas de page) */
+/* 4. Widgets Section */
 .widgets {
     position: absolute;
     bottom: 40px;
@@ -163,49 +201,85 @@ body {
     justify-content: space-between;
     align-items: flex-end;
     z-index: 150;
-    pointer-events: none; /* Laisse passer les clics vers le fond si vide */
+}
+
+.video-preview, .next-game {
+    width: 380px;
+    height: 220px;
+    border-radius: 4px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.video-preview {
+    position: relative;
+    cursor: pointer;
+}
+
+.video-thumbnail {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 100%);
+    z-index: 2;
+}
+
+.play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--red);
+    color: white;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    z-index: 3;
+    transition: transform 0.3s ease;
 }
 
 .next-game {
-    pointer-events: auto;
-    background-color: #000;
+    background-color: var(--black);
     color: white;
-    padding: 20px 25px;
-    width: 380px;      /* Largeur identique */
-    height: 220px;     /* On force la même hauteur que la vidéo */
-    border-radius: 4px;
-    font-family: 'Arial', sans-serif;
-    text-transform: uppercase;
-    display: flex;     /* Utilisation de flex pour espacer le contenu interne */
+    padding: 22px;
+    display: flex;
     flex-direction: column;
     justify-content: space-between;
+    text-transform: uppercase;
 }
 
 .game-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 25px;
 }
 
 .badge-red {
-    background-color: var(--primary-red);
+    background-color: var(--red);
     font-size: 9px;
     padding: 4px 12px;
     border-radius: 20px;
     font-weight: bold;
 }
 
-.game-time {
-    font-size: 10px;
-    color: #666;
-}
+.game-time { font-size: 10px; color: #666; }
 
 .teams-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 25px;
 }
 
 .team {
@@ -216,7 +290,6 @@ body {
     font-weight: bold;
 }
 
-/* Correction taille logos */
 .logo-fix {
     width: 28px !important;
     height: 28px !important;
@@ -244,184 +317,71 @@ body {
     padding-top: 12px;
 }
 
-/* Ajoute ces règles à la suite de ton fichier style.css */
+/* =========================================
+   5. RESPONSIVE DESIGN (Media Queries)
+   ========================================= */
 
-.video-preview {
-    width: 380px;      /* Largeur identique */
-    height: 220px;     /* Hauteur identique */
-    position: relative;
-    border-radius: 4px;
-    overflow: hidden;
-    pointer-events: auto;
-    cursor: pointer;
+/* Écrans Moyens (Tablettes - max 1100px) */
+@media (max-width: 1100px) {
+    .navbar, .hero, .widgets { padding-left: 30px; padding-right: 30px; left: 30px; right: 30px; }
+    .header-right { gap: 30px; }
+    .quote { width: 250px; top: 20%; }
+    .video-preview, .next-game { width: 320px; height: 190px; }
+    .number { font-size: 120px; right: 30px; }
 }
 
-.video-thumbnail {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Recouvre tout l'espace sans déformer */
-    display: block;
+/* Écrans Mobiles (max 768px) */
+@media (max-width: 768px) {
+    body { overflow-y: auto; } /* On permet le scroll sur mobile */
+    
+    .navbar { 
+        padding: 20px; 
+        position: relative; 
+        flex-direction: column; 
+        gap: 20px;
+    }
+    
+    .header-right { flex-direction: column; gap: 15px; }
+    
+    .hero { 
+        height: auto; 
+        min-height: 60vh; 
+        padding: 100px 20px 40px; 
+    }
+    
+    .bg-name { font-size: 25vw; top: 50%; }
+    
+    .player-img { height: 50vh; width: 100%; }
+    
+    .quote { 
+        position: relative; 
+        left: 0; 
+        top: 0; 
+        width: 100%; 
+        text-align: center; 
+        margin-bottom: 30px;
+    }
+    
+    .number { display: none; } /* On cache le numéro 15 sur petit mobile */
+
+    .widgets { 
+        position: relative; 
+        bottom: 0; 
+        left: 0; 
+        right: 0; 
+        flex-direction: column; 
+        align-items: center; 
+        gap: 20px; 
+        padding: 20px;
+    }
+    
+    .video-preview, .next-game { width: 100%; max-width: 380px; height: 210px; }
 }
 
-.video-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.6) 100%); /* Ombre légère comme sur le modèle */
-    z-index: 2;
-}
-
-
-.play-button {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #ff3333;
-    color: white;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-    z-index: 3; /* Pour qu'il soit au-dessus de l'overlay */
-    transition: background-color 0.3s ease;
-}
-
-
-.widgets {
-    position: absolute;
-    bottom: 40px;
-    left: 60px;
-    right: 60px;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    z-index: 150;
-}
-body{
-  font-family: Arial, Helvetica, sans-serif;
-  background: var(--bg);
-  color: var(--black);
-  overflow-x: hidden;
-}
-
-/* ===== NAVBAR ===== */
-.navbar{
-  height: 72px;
-  padding: 0 56px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  background: transparent;
-}
-
-.logo{
-  font-weight: 800;
-  letter-spacing: .2px;
-}
-
-.navbar nav{
-  display:flex;
-  gap: 22px;
-}
-
-.navbar nav a{
-  text-decoration:none;
-  color: var(--black);
-  font-size: 14px;
-  opacity: .85;
-}
-
-.navbar nav a:hover{
-  opacity: 1;
-}
-
-.social-icons{
-  width: 120px; 
-}
-
-/* ===== HERO ===== */
-.hero{
-  position: relative;
-  height: calc(100vh - 72px);
-  padding: 0 56px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  overflow:hidden; 
-}
-
-.quote{
-  position:absolute;
-  left: 56px;
-  top: 22%;
-  width: 360px;
-  z-index: 5;
-}
-
-.quote p{
-  font-size: 14px;
-  line-height: 1.3;
-  font-weight: 700;
-  letter-spacing: .2px;
-  text-transform: uppercase;
-}
-
-.quote span{
-  display:block;
-  margin-top: 10px;
-  font-size: 12px;
-  color: var(--muted);
-}
-
-.bg-name{
-  position:absolute;
-  left: 50%;
-  top: 62%;
-  transform: translate(-50%, -50%);
-  font-size: 15vw;            
-  font-weight: 900;
-  letter-spacing: -0.08em;
-  white-space: nowrap;
-  line-height: 1;
-  color: var(--red);
-  z-index: 1;
-}
-
-.player-img{
-  position: relative;
-  z-index: 4;
-  height: 88%;
-  max-height: 780px;
-  object-fit: contain;
-  transform: translateX(10px); 
-  filter: drop-shadow(0 18px 22px rgba(0,0,0,.18));
-}
-
-.number{
-  position:absolute;
-  right: 70px;
-  top: 22%;
-  z-index: 2;
-  font-size: 160px;
-  font-weight: 900;
-  letter-spacing: -0.04em;
-
-  color: transparent;
-  -webkit-text-stroke: 2px rgba(0,0,0,.35);
-  background-image: repeating-linear-gradient(
-    45deg,
-    rgba(0,0,0,.18) 0px,
-    rgba(0,0,0,.18) 2px,
-    transparent 2px,
-    transparent 7px
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  opacity: .9;
+/* Très petits écrans (max 480px) */
+@media (max-width: 480px) {
+    .nav-links { gap: 15px; }
+    .nav-item { font-size: 10px; }
+    /* Keep clamp() behavior for very small screens; no fixed vw override */
+    .club-info { display: none; } /* On cache les infos club secondaires */
 }
